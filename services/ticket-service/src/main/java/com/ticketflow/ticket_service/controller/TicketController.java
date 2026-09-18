@@ -1,6 +1,7 @@
 package com.ticketflow.ticket_service.controller;
 
 import com.ticketflow.ticket_service.dto.CreateTicketRequest;
+import com.ticketflow.ticket_service.dto.UpdateTicketRequest;
 import com.ticketflow.ticket_service.entity.Ticket;
 import com.ticketflow.ticket_service.service.TicketService;
 import jakarta.validation.Valid;
@@ -49,10 +50,10 @@ public class TicketController {
     @PutMapping("/{id}")
     public ResponseEntity<Ticket> updateTicket(
             @PathVariable Long id,
-            @RequestBody Ticket ticket) {
+            @Valid @RequestBody UpdateTicketRequest request) {
 
         return ResponseEntity.ok(
-                ticketService.updateTicket(id, ticket)
+                ticketService.updateTicket(id, request)
         );
     }
 

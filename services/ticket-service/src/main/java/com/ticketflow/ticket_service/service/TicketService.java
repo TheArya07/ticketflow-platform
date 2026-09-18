@@ -1,5 +1,6 @@
 package com.ticketflow.ticket_service.service;
 
+import com.ticketflow.ticket_service.dto.UpdateTicketRequest;
 import com.ticketflow.ticket_service.entity.Ticket;
 import com.ticketflow.ticket_service.exception.TicketNotFoundException;
 import com.ticketflow.ticket_service.repository.TicketRepository;
@@ -32,13 +33,13 @@ public class TicketService {
                         ));
     }
 
-    public Ticket updateTicket(Long id, Ticket updatedTicket) {
+    public Ticket updateTicket(Long id, UpdateTicketRequest request) {
         Ticket existingTicket = getTicketById(id);
 
-        existingTicket.setTitle(updatedTicket.getTitle());
-        existingTicket.setDescription(updatedTicket.getDescription());
-        existingTicket.setStatus(updatedTicket.getStatus());
-        existingTicket.setPriority(updatedTicket.getPriority());
+        existingTicket.setTitle(request.getTitle());
+        existingTicket.setDescription(request.getDescription());
+        existingTicket.setStatus(request.getStatus());
+        existingTicket.setPriority(request.getPriority());
 
         return ticketRepository.save(existingTicket);
     }
